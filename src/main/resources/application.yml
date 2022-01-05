@@ -1,0 +1,23 @@
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+  endpoint:
+    health:
+      show-details: always
+
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      sampleCircuit:
+        waitDurationInOpenState: 60s
+        slidingWindowSize: 2
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 2
+
